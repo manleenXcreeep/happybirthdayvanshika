@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #333;
+}
+
+.gallery {
+  display: grid;
+  min-height: 720px;
+  gap: 0.5rem;
+  grid-template-columns: repeat(6, 100px);
+  grid-template-rows: repeat(3, 100px);
+}
+.gallery img {
+  max-width: 200px;
+  aspect-ratio: 1;
+  display: grid;
+  grid-column: span 2;
+  object-fit: cover;
+  clip-path: path("M 80 20 C 100 0 100 0 120 20 C 140 40 160 60 180 80 C 200 100 200 100 180 120 C 160 140 140 160 120 180 C 100 200 100 200 80 180 C 60 160 40 140 20 120 C 0 100 0 100 20 80 Z");
+  transition: transform 0.3s ease, filter 0.3s ease, clip-path 0.3s ease;
+  filter: blur(2px) saturate(138%) contrast(175%) invert(13%);
+}
+.gallery img:nth-of-type(4) {
+  grid-column: 2/span 2;
+}
+.gallery img:hover {
+  clip-path: path("M 0 0 C 100 0 100 0 200 0 C 200 50 200 50 200 80 C 200 100 200 100 200 120 C 200 150 200 150 200 200 C 100 200 100 200 0 200 C 0 150 0 150 0 120 C 0 100 0 100 0 80 Z");
+  filter: blur(0) saturate(100%) contrast(100%) invert(0);
+  transform: scale(1.1);
+  z-index: 3;
+}
+.gallery img:not(:hover) {
+  animation: Index 0.2s ease;
+}
+
+@keyframes Index {
+  0%, 100% {
+    z-index: 1;
+  }
+}
